@@ -95,6 +95,10 @@ void P_DropWeapon (player_t* player);
 void	P_PlayerThink (player_t* player);
 
 
+#define MAXUINT     ((UINT)~((UINT)0))
+#define MAXINT      ((INT)(MAXUINT >> 1))
+#define MININT      ((INT)~MAXINT)
+
 //
 // P_MOBJ
 //

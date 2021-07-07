@@ -530,7 +530,8 @@ const char *Sys_DefaultSavePath() {
 		SHGetKnownFolderPath_t SHGetKnownFolderPath = (SHGetKnownFolderPath_t)GetProcAddress( hShell, "SHGetKnownFolderPath" );
 		if ( SHGetKnownFolderPath ) {
 			wchar_t * path;
-			if ( SUCCEEDED( SHGetKnownFolderPath( FOLDERID_SavedGames_IdTech5, CSIDL_FLAG_CREATE | CSIDL_FLAG_PER_USER_INIT, 0, &path ) ) ) {
+			//if ( SUCCEEDED( SHGetKnownFolderPath( FOLDERID_SavedGames_IdTech5, CSIDL_FLAG_CREATE | CSIDL_FLAG_PER_USER_INIT, 0, &path ) ) ) {
+			if (SUCCEEDED(SHGetKnownFolderPath(FOLDERID_SavedGames_IdTech5, CSIDL_FLAG_CREATE | 0x0800, 0, &path))) {
 				if ( wcstombs( savePath, path, MAX_PATH ) > MAX_PATH ) {
 					savePath[0] = 0;
 				}

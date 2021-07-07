@@ -47,6 +47,16 @@ If you have questions concerning this license or the applicable additional terms
 #include "rc/doom_resource.h"
 #include "../../renderer/tr_local.h"
 
+namespace 
+{
+	enum class DMDFO : int
+	{
+		DEFAULT = 0,
+		STRETCH = 1,
+		CENTER = 2,
+	};
+}
+
 // WGL_ARB_extensions_string
 PFNWGLGETEXTENSIONSSTRINGARBPROC		wglGetExtensionsStringARB;
 
@@ -689,9 +699,9 @@ DMDFO
 */
 static const char * DMDFO( int dmDisplayFixedOutput ) {
 	switch( dmDisplayFixedOutput ) {
-	case DMDFO_DEFAULT: return "DMDFO_DEFAULT";
-	case DMDFO_CENTER: return "DMDFO_CENTER";
-	case DMDFO_STRETCH: return "DMDFO_STRETCH";
+		case static_cast<int>(DMDFO::DEFAULT) : return "DMDFO_DEFAULT";
+		case static_cast<int>(DMDFO::CENTER) : return "DMDFO_CENTER";
+		case static_cast<int>(DMDFO::STRETCH) : return "DMDFO_STRETCH";
 	}
 	return "UNKNOWN";
 }
@@ -707,7 +717,6 @@ static void PrintDevMode( DEVMODE & devmode ) {
 	common->Printf( "          dmBitsPerPel        : %i\n", devmode.dmBitsPerPel );
 	common->Printf( "          dmPelsWidth         : %i\n", devmode.dmPelsWidth );
 	common->Printf( "          dmPelsHeight        : %i\n", devmode.dmPelsHeight );
-	common->Printf( "          dmDisplayFixedOutput: %s\n", DMDFO( devmode.dmDisplayFixedOutput ) );
 	common->Printf( "          dmDisplayFlags      : 0x%x\n", devmode.dmDisplayFlags );
 	common->Printf( "          dmDisplayFrequency  : %i\n", devmode.dmDisplayFrequency );
 }
@@ -870,7 +879,6 @@ bool R_GetModeListForDisplay( const int requestedDisplayNum, idList<vidMode_t> &
 				common->Printf( "          dmBitsPerPel        : %i\n", devmode.dmBitsPerPel );
 				common->Printf( "          dmPelsWidth         : %i\n", devmode.dmPelsWidth );
 				common->Printf( "          dmPelsHeight        : %i\n", devmode.dmPelsHeight );
-				common->Printf( "          dmDisplayFixedOutput: %s\n", DMDFO( devmode.dmDisplayFixedOutput ) );
 				common->Printf( "          dmDisplayFlags      : 0x%x\n", devmode.dmDisplayFlags );
 				common->Printf( "          dmDisplayFrequency  : %i\n", devmode.dmDisplayFrequency );
 			}
