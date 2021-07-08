@@ -1,3 +1,14 @@
+This Repository is almost a copy of id-software repository with Doom 3 BFG Edition.
+Modified so it can be built with VS 2019.
+Original: https://ru.wikipedia.org/wiki/Manhunt
+
+Doom 3 data fle(base directory) should be copied to buld directory if you want to debug game.
+Good luck!
+
+id readme file
+==================================
+
+
 Doom 3 BFG Edition GPL Source Code
 ==================================
 
